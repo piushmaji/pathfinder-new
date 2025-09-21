@@ -19,6 +19,40 @@ import {
 } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// NOTE FOR DEVELOPER:
+// The color theme has been updated based on the provided palette.
+// For this to work in a real project, you must define these custom colors
+// and gradients in your `tailwind.config.js` file.
+// Example `tailwind.config.js` extension:
+/*
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#ffffff',
+        'secondary': '#1F1F1F',
+        'accent-red': '#FF6B6B',
+        'accent-yellow': '#FFD93D',
+        'accent-green': '#6BCB77',
+        'accent-blue': '#4D96FF',
+        'accent-purple': '#9B5DE5',
+        'accent-pink': '#F15BB5',
+        'accent-orange': '#FF6A00',
+        'text-primary': '#ffffff',
+        'text-secondary': '#E5E5E5',
+        'text-dark': '#1F1F1F',
+        'bg-dark': '#1F1F1F',
+        'bg-light': '#F5F5F5',
+      },
+      backgroundImage: {
+        'gradient-red-yellow': 'linear-gradient(135deg, #FF6B6B, #FFD93D)',
+        'gradient-green-blue': 'linear-gradient(135deg, #6BCB77, #4D96FF)',
+        // ... etc.
+      }
+    }
+  }
+*/
+
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -115,28 +149,28 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50 dark:from-gray-900 dark:to-purple-900">
+    <div className="min-h-screen bg-bg-light dark:bg-bg-dark text-text-dark dark:text-text-primary">
       {/* Skip to Content Link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-lg z-50"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent-blue text-white px-4 py-2 rounded-lg z-50"
       >
         Skip to main content
       </a>
 
       {/* Navigation */}
-      <nav className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
+      <nav className="bg-bg-light/80 dark:bg-bg-dark/80 backdrop-blur-md border-b border-black/10 dark:border-white/10 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl flex items-center justify-center">
                   <AcademicCapIcon className="h-6 w-6 text-white" />
                 </div>
                 <div className="ml-3">
-                  <h1 className="text-xl font-bold text-slate-800 dark:text-white">PathFinder</h1>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">Career Guidance Platform</p>
+                  <h1 className="text-xl font-bold text-text-dark dark:text-text-primary">PathFinder</h1>
+                  <p className="text-xs text-text-dark/70 dark:text-text-secondary/70">Career Guidance Platform</p>
                 </div>
               </div>
             </div>
@@ -144,19 +178,19 @@ export default function App() {
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#home" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
+                <a href="#home" className="text-text-dark/80 dark:text-text-secondary hover:text-accent-blue dark:hover:text-accent-blue px-3 py-2 text-sm font-medium transition-colors">
                   Home
                 </a>
-                <a href="#features" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
+                <a href="#features" className="text-text-dark/80 dark:text-text-secondary hover:text-accent-blue dark:hover:text-accent-blue px-3 py-2 text-sm font-medium transition-colors">
                   Features
                 </a>
-                <a href="#directory" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
+                <a href="#directory" className="text-text-dark/80 dark:text-text-secondary hover:text-accent-blue dark:hover:text-accent-blue px-3 py-2 text-sm font-medium transition-colors">
                   Colleges
                 </a>
-                <a href="#quiz" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
+                <a href="#quiz" className="text-text-dark/80 dark:text-text-secondary hover:text-accent-blue dark:hover:text-accent-blue px-3 py-2 text-sm font-medium transition-colors">
                   Quiz
                 </a>
-                <a href="#timeline" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors">
+                <a href="#timeline" className="text-text-dark/80 dark:text-text-secondary hover:text-accent-blue dark:hover:text-accent-blue px-3 py-2 text-sm font-medium transition-colors">
                   Timeline
                 </a>
               </div>
@@ -167,28 +201,27 @@ export default function App() {
               {/* Dark mode toggle */}
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                className="p-2 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? (
-                  <SunIcon className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                  <SunIcon className="h-5 w-5 text-text-dark dark:text-text-secondary" />
                 ) : (
-                  <MoonIcon className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                  <MoonIcon className="h-5 w-5 text-text-dark dark:text-text-secondary" />
                 )}
               </button>
 
               {/* Profile button */}
               <button
                 onClick={() => setProfileOpen(true)}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                className="p-2 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
                 aria-label="Open profile"
               >
-                <UserIcon className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                <UserIcon className="h-5 w-5 text-text-dark dark:text-text-secondary" />
               </button>
 
-              {/* Sign In Button - Integration point for JWT auth */}
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105">
-                {/* TODO: Replace with actual auth flow */}
+              {/* Sign In Button */}
+              <button className="bg-gradient-to-r from-accent-orange to-accent-red hover:from-accent-orange/90 hover:to-accent-red/90 text-white px-6 py-2 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105">
                 Sign In
               </button>
             </div>
@@ -197,7 +230,7 @@ export default function App() {
             <div className="md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="p-2 rounded-md text-text-dark dark:text-text-secondary hover:bg-black/5 dark:hover:bg-white/5"
                 aria-label="Open mobile menu"
               >
                 {mobileMenuOpen ? (
@@ -217,15 +250,15 @@ export default function App() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+              className="md:hidden bg-bg-light dark:bg-secondary border-t border-black/10 dark:border-white/10"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Home</a>
-                <a href="#features" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Features</a>
-                <a href="#directory" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Colleges</a>
-                <a href="#quiz" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Quiz</a>
-                <a href="#timeline" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Timeline</a>
-                <button className="w-full mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-xl font-semibold">
+                <a href="#home" className="block px-3 py-2 text-text-dark dark:text-text-secondary hover:bg-black/5 dark:hover:bg-white/10 rounded-md">Home</a>
+                <a href="#features" className="block px-3 py-2 text-text-dark dark:text-text-secondary hover:bg-black/5 dark:hover:bg-white/10 rounded-md">Features</a>
+                <a href="#directory" className="block px-3 py-2 text-text-dark dark:text-text-secondary hover:bg-black/5 dark:hover:bg-white/10 rounded-md">Colleges</a>
+                <a href="#quiz" className="block px-3 py-2 text-text-dark dark:text-text-secondary hover:bg-black/5 dark:hover:bg-white/10 rounded-md">Quiz</a>
+                <a href="#timeline" className="block px-3 py-2 text-text-dark dark:text-text-secondary hover:bg-black/5 dark:hover:bg-white/10 rounded-md">Timeline</a>
+                <button className="w-full mt-4 bg-gradient-to-r from-accent-orange to-accent-red text-white px-6 py-2 rounded-xl font-semibold">
                   Sign In
                 </button>
               </div>
@@ -236,8 +269,8 @@ export default function App() {
 
       <main id="main-content">
         {/* Hero Section */}
-        <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500">
-          <div className="absolute inset-0 bg-black/10"></div>
+        <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-accent-purple to-accent-pink text-text-primary">
+          <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
@@ -247,23 +280,23 @@ export default function App() {
                 transition={{ duration: 0.8 }}
                 className="text-center lg:text-left"
               >
-                <p className="text-blue-100 text-lg mb-4 font-medium">
+                <p className="text-text-secondary text-lg mb-4 font-medium">
                   PathFinder — Find the right degree, college & career path after Class 12.
                 </p>
 
                 <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
                   Choose the right{' '}
-                  <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-accent-yellow to-accent-orange bg-clip-text text-transparent">
                     stream
                   </span>
                   . Enrol in the right{' '}
-                  <span className="bg-gradient-to-r from-green-300 to-blue-300 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent">
                     college
                   </span>
                   . Build your future.
                 </h1>
 
-                <p className="text-xl text-blue-100 mb-8 max-w-2xl">
+                <p className="text-xl text-text-secondary mb-8 max-w-2xl">
                   Personalized aptitude quizzes, local government college listings, and clear course→career maps — all in one place.
                 </p>
 
@@ -273,7 +306,7 @@ export default function App() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => document.getElementById('quiz')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
+                    className="bg-gradient-to-r from-accent-orange to-accent-red hover:from-accent-orange/90 hover:to-accent-red/90 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
                   >
                     <PlayIcon className="h-5 w-5 mr-2" />
                     Take the Quiz
@@ -293,9 +326,9 @@ export default function App() {
                 {/* Micro Stats */}
                 <div className="flex flex-wrap gap-6">
                   {[
-                    { number: "200+", label: "colleges", color: "from-blue-400 to-blue-600" },
-                    { number: "Free", label: "guidance", color: "from-green-400 to-green-600" },
-                    { number: "Pilot", label: "districts", color: "from-purple-400 to-purple-600" }
+                    { number: "200+", label: "colleges", color: "from-accent-blue to-accent-purple" },
+                    { number: "Free", label: "guidance", color: "from-accent-green to-accent-blue" },
+                    { number: "Pilot", label: "districts", color: "from-accent-purple to-accent-pink" }
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
@@ -307,7 +340,7 @@ export default function App() {
                       <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
                         {stat.number}
                       </div>
-                      <div className="text-blue-100 font-medium text-sm">{stat.label}</div>
+                      <div className="text-text-secondary font-medium text-sm">{stat.label}</div>
                     </motion.div>
                   ))}
                 </div>
@@ -331,7 +364,7 @@ export default function App() {
                   </div>
 
                   {/* Floating elements */}
-                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center animate-bounce">
+                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-accent-yellow to-accent-orange rounded-full flex items-center justify-center animate-bounce">
                     <span className="text-2xl">🎯</span>
                   </div>
                 </div>
@@ -341,7 +374,7 @@ export default function App() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 bg-white dark:bg-gray-900">
+        <section id="features" className="py-20 bg-bg-light dark:bg-bg-dark">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -349,10 +382,10 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">
+              <h2 className="text-4xl font-bold text-text-dark dark:text-text-primary mb-4">
                 What PathFinder offers
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              <p className="text-xl text-text-dark/70 dark:text-text-secondary max-w-3xl mx-auto">
                 A one-stop personalized guidance platform for students to choose subjects, discover colleges, and plan the path ahead.
               </p>
             </motion.div>
@@ -363,25 +396,25 @@ export default function App() {
                   title: "Aptitude Quiz",
                   description: "Short quizzes to recommend streams & courses",
                   icon: ChartBarIcon,
-                  gradient: "from-blue-500 to-purple-500"
+                  gradient: "from-accent-blue to-accent-purple"
                 },
                 {
                   title: "Course → Career Mapping",
                   description: "Visual path from degree to jobs & higher study",
                   icon: MapPinIcon,
-                  gradient: "from-purple-500 to-pink-500"
+                  gradient: "from-accent-purple to-accent-pink"
                 },
                 {
                   title: "Nearby Government Colleges",
                   description: "Location-based list with facilities & cutoffs",
                   icon: AcademicCapIcon,
-                  gradient: "from-green-500 to-blue-500"
+                  gradient: "from-accent-green to-accent-blue"
                 },
                 {
                   title: "Timeline Tracker",
                   description: "Admission dates, scholarship windows & reminders",
                   icon: ClockIcon,
-                  gradient: "from-orange-500 to-red-500"
+                  gradient: "from-accent-orange to-accent-red"
                 }
               ].map((feature, index) => (
                 <motion.div
@@ -390,15 +423,15 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   whileHover={{ y: -10 }}
-                  className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                  className="bg-white dark:bg-secondary rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-black/5 dark:border-white/10"
                 >
                   <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6`}>
                     <feature.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">
+                  <h3 className="text-xl font-bold text-text-dark dark:text-text-primary mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-text-dark/70 dark:text-text-secondary">
                     {feature.description}
                   </p>
                 </motion.div>
@@ -408,7 +441,7 @@ export default function App() {
         </section>
 
         {/* Directory Section */}
-        <section id="directory" className="py-20 bg-gray-50 dark:bg-gray-800">
+        <section id="directory" className="py-20 bg-bg-light dark:bg-bg-dark">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -416,10 +449,10 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">
+              <h2 className="text-4xl font-bold text-text-dark dark:text-text-primary mb-4">
                 Find Government Colleges Near You
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400">
+              <p className="text-xl text-text-dark/70 dark:text-text-secondary">
                 Discover the best government colleges in your area with detailed information about courses, cutoffs, and facilities.
               </p>
             </motion.div>
@@ -428,22 +461,22 @@ export default function App() {
               {/* Left: Search and Results */}
               <div className="space-y-6">
                 {/* Search and Filters */}
-                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                <div className="bg-white dark:bg-secondary rounded-2xl p-6 shadow-lg">
                   <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <div className="flex-1 relative">
-                      <MagnifyingGlassIcon className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                      <MagnifyingGlassIcon className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-text-dark/50 dark:text-text-secondary/50" />
                       <input
                         type="text"
                         placeholder="Search colleges..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                        className="w-full pl-10 pr-4 py-3 border border-black/20 dark:border-white/20 rounded-xl focus:ring-2 focus:ring-accent-blue focus:border-transparent bg-bg-light dark:bg-bg-dark text-text-dark dark:text-text-primary"
                       />
                     </div>
                     <select
                       value={selectedStream}
                       onChange={(e) => setSelectedStream(e.target.value)}
-                      className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                      className="px-4 py-3 border border-black/20 dark:border-white/20 rounded-xl focus:ring-2 focus:ring-accent-blue focus:border-transparent bg-bg-light dark:bg-bg-dark text-text-dark dark:text-text-primary"
                     >
                       <option value="">All Streams</option>
                       <option value="engineering">Engineering</option>
@@ -458,7 +491,7 @@ export default function App() {
                     {["Hostel", "Library", "Lab", "Hospital", "Sports"].map((facility) => (
                       <button
                         key={facility}
-                        className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-800 rounded-lg text-sm font-medium transition-colors"
+                        className="px-4 py-2 bg-black/5 dark:bg-white/5 hover:bg-accent-blue/10 dark:hover:bg-accent-blue/20 rounded-lg text-sm font-medium transition-colors"
                       >
                         {facility}
                       </button>
@@ -475,37 +508,37 @@ export default function App() {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5 }}
                       onClick={() => setSelectedCollege(college)}
-                      className={`bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-l-4 ${selectedCollege?.id === college.id
-                          ? 'border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800'
-                          : 'border-gray-200 dark:border-gray-700'
+                      className={`bg-white dark:bg-secondary rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-l-4 ${selectedCollege?.id === college.id
+                        ? 'border-accent-blue ring-2 ring-accent-blue/20'
+                        : 'border-transparent'
                         }`}
                     >
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-1">
+                          <h3 className="text-xl font-bold text-text-dark dark:text-text-primary mb-1">
                             {college.name}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-400">
+                          <p className="text-text-dark/70 dark:text-text-secondary">
                             {college.district} • {college.distanceKm} km away
                           </p>
                         </div>
                         <div className={`px-3 py-1 rounded-full text-sm font-medium ${college.distanceKm < 6
-                            ? 'bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-300'
-                            : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+                          ? 'bg-accent-green/10 text-accent-green'
+                          : 'bg-black/5 text-text-dark/70 dark:bg-white/5 dark:text-text-secondary'
                           }`}>
                           {college.distanceKm < 6 ? 'Recommended' : 'Available'}
                         </div>
                       </div>
 
                       <div className="mb-4">
-                        <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <p className="text-sm font-medium text-text-dark dark:text-text-primary mb-2">
                           Courses Available:
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {college.courses.map((course, index) => (
                             <span
                               key={index}
-                              className="px-3 py-1 bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 rounded-lg text-sm"
+                              className="px-3 py-1 bg-accent-blue/10 text-accent-blue rounded-lg text-sm"
                             >
                               {course}
                             </span>
@@ -514,8 +547,8 @@ export default function App() {
                       </div>
 
                       <div className="flex justify-between items-center">
-                        <div className="text-sm text-gray-600 dark:text-gray-400">
-                          Cutoff: <span className="font-semibold text-slate-800 dark:text-white">{college.cutoff}</span>
+                        <div className="text-sm text-text-dark/70 dark:text-text-secondary">
+                          Cutoff: <span className="font-semibold text-text-dark dark:text-text-primary">{college.cutoff}</span>
                         </div>
                         <div className="flex gap-2">
                           <button
@@ -523,12 +556,12 @@ export default function App() {
                               e.stopPropagation();
                               saveCollege(college);
                             }}
-                            className="flex items-center gap-1 px-3 py-1.5 bg-orange-100 dark:bg-orange-800 hover:bg-orange-200 dark:hover:bg-orange-700 text-orange-700 dark:text-orange-300 rounded-lg text-sm font-medium transition-colors"
+                            className="flex items-center gap-1 px-3 py-1.5 bg-accent-orange/10 hover:bg-accent-orange/20 text-accent-orange rounded-lg text-sm font-medium transition-colors"
                           >
                             <BookmarkIcon className="h-4 w-4" />
                             Save
                           </button>
-                          <button className="flex items-center gap-1 px-3 py-1.5 bg-blue-100 dark:bg-blue-800 hover:bg-blue-200 dark:hover:bg-blue-700 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-medium transition-colors">
+                          <button className="flex items-center gap-1 px-3 py-1.5 bg-accent-blue/10 hover:bg-accent-blue/20 text-accent-blue rounded-lg text-sm font-medium transition-colors">
                             <EyeIcon className="h-4 w-4" />
                             View
                           </button>
@@ -540,16 +573,14 @@ export default function App() {
               </div>
 
               {/* Right: Map Placeholder */}
-              <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
-                <div className="w-full h-96 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center">
+              <div className="bg-white dark:bg-secondary rounded-2xl p-6 shadow-lg">
+                <div className="w-full h-96 bg-black/5 dark:bg-white/5 rounded-xl flex items-center justify-center">
                   <div className="text-center">
-                    <MapPinIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 dark:text-gray-400 font-medium">Interactive Map</p>
-                    <p className="text-gray-500 dark:text-gray-500 text-sm mt-2">
+                    <MapPinIcon className="h-16 w-16 text-text-dark/40 dark:text-text-secondary/40 mx-auto mb-4" />
+                    <p className="text-text-dark/70 dark:text-text-secondary font-medium">Interactive Map</p>
+                    <p className="text-text-dark/50 dark:text-text-secondary/50 text-sm mt-2">
                       Replace with react-leaflet component
                     </p>
-                    {/* TODO: Integrate react-leaflet map with markers */}
-                    {/* TODO: Connect to /api/colleges endpoint for real data */}
                   </div>
                 </div>
               </div>
@@ -558,7 +589,7 @@ export default function App() {
         </section>
 
         {/* Quiz Preview Section */}
-        <section id="quiz" className="py-20 bg-white dark:bg-gray-900">
+        <section id="quiz" className="py-20 bg-bg-light dark:bg-secondary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -566,15 +597,15 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">
+              <h2 className="text-4xl font-bold text-text-dark dark:text-text-primary mb-4">
                 Career Aptitude Quiz
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400">
+              <p className="text-xl text-text-dark/70 dark:text-text-secondary">
                 Discover your ideal career path with our scientifically-designed aptitude assessment.
               </p>
             </motion.div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-purple-900 rounded-2xl p-8 shadow-xl">
+            <div className="bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 dark:from-accent-blue/10 dark:to-accent-purple/10 rounded-2xl p-8 shadow-xl">
               {quizStep === 'result' ? (
                 /* Quiz Result */
                 <motion.div
@@ -582,32 +613,32 @@ export default function App() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center"
                 >
-                  <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-r from-accent-green to-accent-blue rounded-full flex items-center justify-center mx-auto mb-6">
                     <ChartBarIcon className="h-10 w-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">
+                  <h3 className="text-2xl font-bold text-text-dark dark:text-text-primary mb-4">
                     Your Recommended Stream: {calculateQuizResult(quizAnswers).stream}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  <p className="text-text-dark/70 dark:text-text-secondary mb-6">
                     Based on your responses, here are your top career paths:
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                     {calculateQuizResult(quizAnswers).courses.map((course, index) => (
-                      <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
-                        <h4 className="font-bold text-slate-800 dark:text-white">{course}</h4>
+                      <div key={index} className="bg-white/50 dark:bg-secondary/50 rounded-xl p-4 shadow-lg">
+                        <h4 className="font-bold text-text-dark dark:text-text-primary">{course}</h4>
                       </div>
                     ))}
                   </div>
                   <div className="space-y-4">
-                    <h4 className="font-bold text-slate-800 dark:text-white">Next Steps:</h4>
+                    <h4 className="font-bold text-text-dark dark:text-text-primary">Next Steps:</h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+                      <button className="bg-gradient-to-r from-accent-blue to-accent-purple text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
                         Apply Now
                       </button>
-                      <button className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+                      <button className="bg-gradient-to-r from-accent-green to-accent-blue text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
                         Read Materials
                       </button>
-                      <button className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+                      <button className="bg-gradient-to-r from-accent-orange to-accent-pink text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
                         Find Scholarships
                       </button>
                     </div>
@@ -617,7 +648,7 @@ export default function App() {
                       setQuizStep(0);
                       setQuizAnswers([]);
                     }}
-                    className="mt-6 text-blue-600 dark:text-blue-400 hover:underline"
+                    className="mt-6 text-accent-blue dark:text-accent-blue hover:underline"
                   >
                     Take Quiz Again
                   </button>
@@ -627,13 +658,13 @@ export default function App() {
                 <div>
                   {/* Progress Bar */}
                   <div className="mb-8">
-                    <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    <div className="flex justify-between text-sm text-text-dark/70 dark:text-text-secondary mb-2">
                       <span>Question {quizStep + 1} of {quizQuestions.length}</span>
                       <span>{Math.round(((quizStep + 1) / quizQuestions.length) * 100)}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                        className="bg-gradient-to-r from-accent-blue to-accent-purple h-2 rounded-full transition-all duration-300"
                         style={{ width: `${((quizStep + 1) / quizQuestions.length) * 100}%` }}
                       ></div>
                     </div>
@@ -645,7 +676,7 @@ export default function App() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-8 text-center">
+                    <h3 className="text-2xl font-bold text-text-dark dark:text-text-primary mb-8 text-center">
                       {quizQuestions[quizStep].question}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -655,9 +686,9 @@ export default function App() {
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={() => handleQuizAnswer(index)}
-                          className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-left border-2 border-transparent hover:border-blue-300 dark:hover:border-blue-600"
+                          className="bg-white/50 dark:bg-secondary/50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-left border-2 border-transparent hover:border-accent-blue"
                         >
-                          <p className="font-semibold text-slate-800 dark:text-white">{option}</p>
+                          <p className="font-semibold text-text-dark dark:text-text-primary">{option}</p>
                         </motion.button>
                       ))}
                     </div>
@@ -665,13 +696,11 @@ export default function App() {
                 </div>
               )}
             </div>
-            {/* TODO: Replace with server-side AI integration using Google Gemini API */}
-            {/* TODO: Connect to /api/quiz endpoint for enhanced assessment */}
           </div>
         </section>
 
         {/* Timeline Section */}
-        <section id="timeline" className="py-20 bg-gray-50 dark:bg-gray-800">
+        <section id="timeline" className="py-20 bg-bg-light dark:bg-bg-dark">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -679,17 +708,17 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">
+              <h2 className="text-4xl font-bold text-text-dark dark:text-text-primary mb-4">
                 Important Dates & Timeline
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400">
+              <p className="text-xl text-text-dark/70 dark:text-text-secondary">
                 Stay on track with admission deadlines and scholarship opportunities.
               </p>
             </motion.div>
 
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+              <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-accent-blue to-accent-purple rounded-full"></div>
 
               <div className="space-y-12">
                 {[
@@ -732,32 +761,28 @@ export default function App() {
                     className={`flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8`}
                   >
                     {/* Timeline dot */}
-                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg relative z-10">
+                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full flex items-center justify-center shadow-lg relative z-10">
                       <div className="w-4 h-4 bg-white rounded-full"></div>
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1 bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+                    <div className="flex-1 bg-white dark:bg-secondary rounded-2xl p-6 shadow-lg">
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
+                          <h3 className="text-xl font-bold text-text-dark dark:text-text-primary mb-2">
                             {event.title}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-400">
+                          <p className="text-text-dark/70 dark:text-text-secondary">
                             {event.description}
                           </p>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900 px-3 py-1 rounded-full">
+                          <span className="text-sm font-medium text-accent-blue bg-accent-blue/10 px-3 py-1 rounded-full">
                             {event.date}
                           </span>
                           <button
-                            className="text-orange-600 dark:text-orange-400 hover:bg-orange-100 dark:hover:bg-orange-900 p-2 rounded-lg transition-colors"
+                            className="text-accent-orange hover:bg-accent-orange/10 p-2 rounded-lg transition-colors"
                             aria-label="Add reminder"
-                            onClick={() => {
-                              // TODO: Store in localStorage
-                              console.log(`Reminder set for ${event.title}`);
-                            }}
                           >
                             <ClockIcon className="h-5 w-5" />
                           </button>
@@ -772,21 +797,21 @@ export default function App() {
         </section>
 
         {/* Footer */}
-        <footer className="bg-slate-800 dark:bg-gray-900 text-white py-16">
+        <footer className="bg-secondary text-text-primary py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
               {/* Brand */}
               <div className="col-span-1 md:col-span-2">
                 <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mr-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-accent-blue to-accent-purple rounded-xl flex items-center justify-center mr-3">
                     <AcademicCapIcon className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold">PathFinder</h3>
-                    <p className="text-sm text-gray-400">Career Guidance Platform</p>
+                    <p className="text-sm text-text-secondary">Career Guidance Platform</p>
                   </div>
                 </div>
-                <p className="text-gray-400 max-w-md">
+                <p className="text-text-secondary max-w-md">
                   Empowering students to make informed decisions about their academic and career journey through personalized guidance and comprehensive resources.
                 </p>
               </div>
@@ -795,10 +820,10 @@ export default function App() {
               <div>
                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                 <div className="space-y-2">
-                  <a href="#features" className="block text-gray-400 hover:text-white transition-colors">Features</a>
-                  <a href="#directory" className="block text-gray-400 hover:text-white transition-colors">College Directory</a>
-                  <a href="#quiz" className="block text-gray-400 hover:text-white transition-colors">Aptitude Quiz</a>
-                  <a href="#timeline" className="block text-gray-400 hover:text-white transition-colors">Timeline</a>
+                  <a href="#features" className="block text-text-secondary hover:text-white transition-colors">Features</a>
+                  <a href="#directory" className="block text-text-secondary hover:text-white transition-colors">College Directory</a>
+                  <a href="#quiz" className="block text-text-secondary hover:text-white transition-colors">Aptitude Quiz</a>
+                  <a href="#timeline" className="block text-text-secondary hover:text-white transition-colors">Timeline</a>
                 </div>
               </div>
 
@@ -806,16 +831,16 @@ export default function App() {
               <div>
                 <h4 className="text-lg font-semibold mb-4">Support</h4>
                 <div className="space-y-2">
-                  <a href="#" className="block text-gray-400 hover:text-white transition-colors">Help Center</a>
-                  <a href="#" className="block text-gray-400 hover:text-white transition-colors">Contact Us</a>
-                  <a href="#" className="block text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                  <a href="#" className="block text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                  <a href="#" className="block text-text-secondary hover:text-white transition-colors">Help Center</a>
+                  <a href="#" className="block text-text-secondary hover:text-white transition-colors">Contact Us</a>
+                  <a href="#" className="block text-text-secondary hover:text-white transition-colors">Privacy Policy</a>
+                  <a href="#" className="block text-text-secondary hover:text-white transition-colors">Terms of Service</a>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-gray-700 pt-8 text-center">
-              <p className="text-gray-400">
+            <div className="border-t border-white/20 pt-8 text-center">
+              <p className="text-text-secondary">
                 © 2025 PathFinder. Built for student success. All rights reserved.
               </p>
             </div>
@@ -841,36 +866,36 @@ export default function App() {
               initial={{ opacity: 0, x: 300 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 300 }}
-              className="fixed right-0 top-0 h-full w-80 bg-white dark:bg-gray-800 shadow-xl z-50 overflow-y-auto"
+              className="fixed right-0 top-0 h-full w-80 bg-bg-light dark:bg-secondary shadow-xl z-50 overflow-y-auto"
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-white">Profile</h3>
+                  <h3 className="text-xl font-bold text-text-dark dark:text-text-primary">Profile</h3>
                   <button
                     onClick={() => setProfileOpen(false)}
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                    className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg"
                   >
-                    <XMarkIcon className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                    <XMarkIcon className="h-5 w-5 text-text-dark/70 dark:text-text-secondary" />
                   </button>
                 </div>
 
                 {/* Mock User Info */}
                 <div className="text-center mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl font-bold text-white">JS</span>
                   </div>
-                  <h4 className="font-bold text-slate-800 dark:text-white">John Student</h4>
-                  <p className="text-gray-600 dark:text-gray-400">Class 12 - Science</p>
+                  <h4 className="font-bold text-text-dark dark:text-text-primary">John Student</h4>
+                  <p className="text-text-dark/70 dark:text-text-secondary">Class 12 - Science</p>
                 </div>
 
                 {/* Recommended Streams */}
                 <div className="mb-6">
-                  <h5 className="font-semibold text-slate-800 dark:text-white mb-3">Recommended Streams</h5>
+                  <h5 className="font-semibold text-text-dark dark:text-text-primary mb-3">Recommended Streams</h5>
                   <div className="space-y-2">
-                    <div className="bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-3 py-2 rounded-lg">
+                    <div className="bg-accent-green/10 text-accent-green px-3 py-2 rounded-lg">
                       Engineering (95% match)
                     </div>
-                    <div className="bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-3 py-2 rounded-lg">
+                    <div className="bg-accent-blue/10 text-accent-blue px-3 py-2 rounded-lg">
                       Medicine (87% match)
                     </div>
                   </div>
@@ -878,22 +903,22 @@ export default function App() {
 
                 {/* Saved Colleges */}
                 <div>
-                  <h5 className="font-semibold text-slate-800 dark:text-white mb-3">
+                  <h5 className="font-semibold text-text-dark dark:text-text-primary mb-3">
                     Saved Colleges ({savedColleges.length})
                   </h5>
                   <div className="space-y-3">
                     {savedColleges.map((college) => (
-                      <div key={college.id} className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
-                        <h6 className="font-medium text-slate-800 dark:text-white text-sm">
+                      <div key={college.id} className="bg-black/5 dark:bg-white/5 p-3 rounded-lg">
+                        <h6 className="font-medium text-text-dark dark:text-text-primary text-sm">
                           {college.name}
                         </h6>
-                        <p className="text-gray-600 dark:text-gray-400 text-xs">
+                        <p className="text-text-dark/70 dark:text-text-secondary text-xs">
                           {college.district} • {college.distanceKm} km
                         </p>
                       </div>
                     ))}
                     {savedColleges.length === 0 && (
-                      <p className="text-gray-500 dark:text-gray-400 text-sm">
+                      <p className="text-text-dark/60 dark:text-text-secondary/60 text-sm">
                         No saved colleges yet. Browse the directory to save colleges you're interested in.
                       </p>
                     )}
