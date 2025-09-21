@@ -2,12 +2,15 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,ttf}",
   ],
   darkMode: 'class', // Make sure dark mode is enabled
   theme: {
     extend: {
       // PASTE THE CODE BELOW INTO YOUR FILE
+      fontFamily: {
+        'logo': ['TECWO', 'sans-serif'],
+      },
       colors: {
         'primary': '#ffffff',
         'secondary': '#1F1F1F',

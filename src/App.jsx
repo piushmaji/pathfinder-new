@@ -1,4 +1,5 @@
 // src/App.jsx
+
 import React, { useState, useEffect } from 'react';
 import {
   ChevronDownIcon,
@@ -169,7 +170,7 @@ export default function App() {
                   <AcademicCapIcon className="h-6 w-6 text-white" />
                 </div>
                 <div className="ml-3">
-                  <h1 className="text-xl font-bold text-text-dark dark:text-text-primary">PathFinder</h1>
+                  <h1 className="font-logo text-2xl font-bold bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent tracking-wider">Pathfinder</h1>
                   <p className="text-xs text-text-dark/70 dark:text-text-secondary/70">Career Guidance Platform</p>
                 </div>
               </div>

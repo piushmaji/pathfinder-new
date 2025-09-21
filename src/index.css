@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Techwo';
+  src: url('./assets/fonts/TECWO.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
